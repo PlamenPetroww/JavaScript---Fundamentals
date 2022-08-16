@@ -1,0 +1,5 @@
+function laptop() {
+
+}
+
+laptop()

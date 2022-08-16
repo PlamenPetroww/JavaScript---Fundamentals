@@ -1,0 +1,58 @@
+function flightSchedule(input) {
+    const flights = input.shift(); // Array for all the flights on a specific sector
+    const newStatuses = input.shift(); // Array with the newly changed statuses
+    const statusToCheck = input.shift().toString(); // Single string
+   
+    const allFlights = []; // This array will hold object elements
+   
+    // Pushing all the initial flights to the array
+    for (const elem of flights) {
+      let [plane, destination] = elem.split(' ');
+      let flight = {
+        plane,
+        destination,
+      };
+      allFlights.push(flight);
+    }
+   
+    // Changing the statuses of the existing flights
+    for (const elem of newStatuses) {
+      let [plane, status] = elem.split(' ');
+      allFlights.forEach(flight => {
+        if (flight.plane === plane) {
+          flight.status = status;
+        }
+      });
+    }
+   
+    // Prints all the flights, that its statuses were not changed
+    if (statusToCheck === 'Ready to fly') {
+      allFlights.forEach(flight => {
+        if (!flight.status) {
+          flight.status = 'Ready to fly';
+          console.log(`{ Destination: '${flight.destination}', Status: '${flight.status}' }`);
+        }
+      });
+    } else {
+      // Prints all the flights, that its statuses were changed
+      allFlights.forEach(flight => {
+        if (flight.status) {
+          console.log(`{ Destination: '${flight.destination}', Status: '${flight.status}' }`);
+        }
+      });
+    }
+  }
+
+flightSchedule([['WN269 Delaware',
+ 'WN612 Alabama',
+ 'WN4010 New York',
+ 'WN1173 California',
+ 'DL2120 Texas',
+ 'KL5744 Illinois',
+ 'WN678 Pennsylvania'],
+ ['DL2120 Cancelled',
+ 'WN612 Cancelled',
+ 'WN1173 Cancelled',
+ 'SK430 Cancelled'],
+ ['Cancelled']
+])

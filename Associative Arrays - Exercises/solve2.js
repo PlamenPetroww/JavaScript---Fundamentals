@@ -1,6 +1,7 @@
-function cardGame(data) {
+function cardGame(input) {
 
     let players = new Map();
+
     let enumCardPower = {
         "2": 2,
         "3": 3,
@@ -16,32 +17,34 @@ function cardGame(data) {
         "K": 13,
         "A": 14
     };
+
     let enumPowerType = {
         'S': 4,
         'H': 3,
         "D": 2,
         "C": 1
     }
-    for(let line of data) {
-        let tokens = line.split(': ');
+
+    for (let line of input) {
+        let tokens = line.split(": ")
         let name = tokens.shift();
-        let decksAsString = tokens[0];
-        let deckArr = decksAsString.split(', ');
-        if(!players.has(name)) {
+        let cards = tokens[0];
+        let allCards = cards.split(", ");
+        if (!players.has(name)) {
             players.set(name, new Set());
         }
 
-        for(let card of deckArr) {
+        for(let card of allCards) {
             players.get(name).add(card);
         }
-        
     }
+
     for(let [key, value] of players) {
         let sum = 0;
-        for(let card of value) {
-            let cardInfo = card.split('');
-            let cardType = cardInfo.pop();
-            let cardPower = cardInfo.join('');
+        for(let line of value) {
+            let cardsInfo = line.split("");
+            let cardType = cardsInfo.pop();
+            let cardPower = cardsInfo.join("");
             let cardPowerAsNumber = enumCardPower[cardPower];
             let cardTypeAsNumber = enumPowerType[cardType];
             sum += cardPowerAsNumber * cardTypeAsNumber;
@@ -57,5 +60,4 @@ cardGame([
     'Tomas: 6H, 7S, KC, KD, 5S, 10C',
     'Andrea: QH, QC, JS, JD, JC',
     'Peter: JD, JD, JD, JD, JD, JD'
-    ])
-
+])

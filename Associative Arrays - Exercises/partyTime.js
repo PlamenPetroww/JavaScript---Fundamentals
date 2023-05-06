@@ -1,4 +1,4 @@
-function party(data) {
+/*function party(data) {
 
     let arrVip = [];
     let arrNomal = [];
@@ -46,7 +46,7 @@ function party(data) {
 
 }
 
-/* party(['7IK9Yo0h',
+ party(['7IK9Yo0h',
 '9NoBUajQ',
 'Ce8vwPmE',
 'SVQXQCbc',
@@ -55,8 +55,101 @@ function party(data) {
 '9NoBUajQ',
 'Ce8vwPmE',
 'SVQXQCbc'
-]) */
+]) 
 
+party(['m8rfQBvl',
+    'fc1oZCE0',
+    'UgffRkOn',
+    '7ugX7bm0',
+    '9CQBGUeJ',
+    '2FQZT3uC',
+    'dziNz78I',
+    'mdSGyQCJ',
+    'LjcVpmDL',
+    'fPXNHpm1',
+    'HTTbwRmM',
+    'B5yTkMQi',
+    '8N0FThqG',
+    'xys2FYzn',
+    'MDzcM9ZK',
+    'PARTY',
+    '2FQZT3uC',
+    'dziNz78I',
+    'mdSGyQCJ',
+    'LjcVpmDL',
+    'fPXNHpm1',
+    'HTTbwRmM',
+    'B5yTkMQi',
+    '8N0FThqG',
+    'm8rfQBvl',
+    'fc1oZCE0',
+    'UgffRkOn',
+    '7ugX7bm0',
+    '9CQBGUeJ'
+])*/
+
+function party(input) {
+
+    let res = [];
+    let vipPeople = [];
+    let normalPeople = [];
+    let vipConsole = [];
+    let normalConsole = [];
+    let counter = 0;
+    let isParty = false;
+
+    for (let word of input) {
+        if (word === "PARTY") {
+            isParty = true;
+            continue;
+        }
+        if (!isParty) {
+            if (word[0] === 1 || word[0] === 2 || word[0] === 3
+                || word[0] === 4 || word[0] === 5 || word[0] === 6 ||
+                word[0] === 7 || word[0] === 8 ||
+                word[0] === 9 || word[0] === 0) {
+                vipPeople.push(word)
+                
+            } else {
+                normalPeople.push(word)
+                
+            }
+        } else {
+            if (vipPeople.includes(word)) {
+                let indexOf = vipPeople.indexOf(word);
+                vipPeople.splice(indexOf, 1);
+            }
+            if (normalPeople.includes(word)) {
+                let indexOf = normalPeople.indexOf(word);
+                normalPeople.splice(indexOf, 1)
+            }
+        }
+    }
+    let total = vipPeople.length + normalPeople.length;
+    console.log(total)
+
+
+    for(let code of vipPeople) {
+        console.log(code)
+    }
+    for(let code of normalPeople) {
+        console.log(code)
+    }
+
+}
+
+/* party(['7IK9Yo0h',
+    '9NoBUajQ',
+    'Ce8vwPmE',
+    'SVQXQCbc',
+    'tSzE5t0p',
+    'PARTY',
+    '9NoBUajQ',
+    'Ce8vwPmE',
+    'SVQXQCbc'
+])
+
+console.log("---------------") */
 party(['m8rfQBvl',
     'fc1oZCE0',
     'UgffRkOn',
